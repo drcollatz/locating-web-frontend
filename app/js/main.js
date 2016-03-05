@@ -1,10 +1,20 @@
 import angular from 'angular';
 
+require('angular-animate');
+require('angular-ui-bootstrap');
+require('angular-fontawesome');
+require('spin.js');
+require('angular-spinner');
+require("wu");
+require("angular-chart.js");
+
 // angular modules
 import constants from './constants';
 import onConfig  from './on_config';
 import onRun     from './on_run';
 import 'angular-ui-router';
+import 'angular-resource';
+import 'angular-spring-data-rest';
 import './templates';
 import './filters';
 import './controllers';
@@ -18,7 +28,14 @@ const requires = [
   'app.filters',
   'app.controllers',
   'app.services',
-  'app.directives'
+  'app.directives',
+  'ngResource',
+  'spring-data-rest',
+  'ngAnimate',
+  'ui.bootstrap',
+  'picardy.fontawesome',
+  'angularSpinner',
+  'chart.js'
 ];
 
 // mount on window for testing
