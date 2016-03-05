@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-8">
     <h1><fa name="gear"></fa> {{ setupPeople.title }}</h1>
-    <h3>Create entries for all persons you want to track</h3>
+    <!--<h3>Create entries for all persons you want to track</h3>-->
   </div>
   <div class="col-md-4">
-    <button class='btn btn-success btn-lg pull-right'><fa name="plus"></fa> Add a new Person</button>
+    <button class='btn btn-success btn-lg pull-right' ng-click="setupPeople.openDetails()"><fa name="plus"></fa> Add a new Person</button>
   </div>
 </div>
 <!--
@@ -35,8 +35,9 @@
           </ul>
         </td>
         <td class="text-right vert-align">
-          <button class='btn btn-info'><fa name="edit"></fa></button>
+          <button class='btn btn-info' ng-click="setupPeople.openDetails(person)"><fa name="edit"></fa></button>
           <button class='btn btn-danger'><fa name="trash"></fa></button>
+
         </td>
       </tr>
     </tbody>

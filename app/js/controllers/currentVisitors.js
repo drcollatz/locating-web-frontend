@@ -1,18 +1,14 @@
-function CurrentVisitorsCtrl() {
+function CurrentVisitorsCtrl(LocatingService) {
+    'ngInject';
 
   // ViewModel
   const vm = this;
 
   vm.title = 'Current Visitors';
 
-  vm.people = [
-    { name: 'Florens',
-      time: 10},
-    { name: 'Christian',
-      time: 2},
-    { name: 'Mark',
-      time: 31}
-    ];
+  LocatingService.get().then(x => {
+    vm.people = x;
+  })
 
 }
 

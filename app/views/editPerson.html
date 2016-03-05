@@ -1,1 +1,32 @@
-<h1>{{ editPerson.title }}</h1>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1><fa name="user"></fa> {{ editPerson.title }}</h1>
+  </div>
+</div>
+<div class="row top-buffer">
+  <div class="col-md-8 col-md-offset-2">
+    <form class="form-horizontal" role="form">
+     <div class="form-group form-group-lg">
+       <label class="control-label col-sm-2" for="name">Name</label>
+       <div class="col-sm-10">
+         <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="editPerson.person.name">
+       </div>
+     </div>
+     <div class="form-group form-group-lg">
+       <label class="control-label col-sm-2" for="macs">Macs</label>
+       <div class="col-sm-10">
+         <input type="text" class="form-control" id="macs" ng-list placeholder="Enter macs" ng-model="editPerson.person.macs">
+         <span class="help-block">Comma separated list of mac addresses.</span>
+       </div>
+     </div>
+   </form>
+  </div>
+ </div>
+ <div class="row">
+   <div class="col-md-8 col-md-offset-2">
+     <div class="pull-right">
+       <button class='btn btn-default btn-lg' ng-click="editPerson.close()"><fa name="remove"></fa> Cancel</button>
+       <button class='btn btn-primary btn-lg' ng-click="editPerson.save()"><fa name="check"></fa> Save</button>
+   </div>
+   </div>
+ </div>
