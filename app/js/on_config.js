@@ -14,6 +14,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
     controller: 'CurrentVisitorsCtrl as visitors',
     templateUrl: 'currentVisitors.html',
     title: 'Visitors'
+  }).state('SetupPeople', {
+    url: '/people',
+    controller: 'SetupPeopleCtrl as setupPeople',
+    templateUrl: 'setupPeople.html',
+    title: 'Setup People'
   });
 
   $urlRouterProvider.otherwise('/');

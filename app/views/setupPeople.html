@@ -1,0 +1,17 @@
+<h1>{{ setupPeople.title }}</h1>
+
+<div class="row top-buffer">
+  <div class="col-md-12">
+    <table class="table table-condensed">
+      <tr ng-repeat="person in setupPeople.people | orderBy:'+name'">
+        <td><h3>{{ person.name }}<br /><small><fa name="mobile"></fa> 1 device</small></h3></t>
+        <td class="text-right"><h3><code>{{ person.mac }}</code></h3></td>
+        <td class="text-right"><button class='btn btn-success'><fa name="edit"></fa> Edit</button></td>
+
+      </tr>
+    </table>
+
+
+
+  </div>
+</div>
