@@ -3,9 +3,14 @@ $font-color--dark: #333;
 $font-color--light: #fff;
 $background--light: #eee;
 $background--dark: #222;
-$blue: #1f8de2;
-$green: #1fe27b;
+$blue: #215f8b;
+$green: rgb(1, 167, 155);
 $red: #e21f3f;
+
+$Bosch_Blau_75: #215f8b;
+$Bosch_Gelbgruen: #c0ac00;
+$Bosch_Hellblau: #6eb0d5;
+$Bosch_Rot: #e20015;
 
 // spacing
 $full-space: 40px;
@@ -22,3 +27,11 @@ $font-size--xl: 32px;
 
 // shapes
 $name-circle-size: 60px;
+
+// customize bootstrap
+$navbar-inverse-bg: $Bosch_Blau_75;
+$navbar-inverse-link-color: white;
+$brand-primary: $Bosch_Blau_75;
+$brand-success: $green;
+$brand-info: $Bosch_Hellblau;
+$brand-warning: $Bosch_Gelbgruen;

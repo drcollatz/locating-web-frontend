@@ -8,7 +8,7 @@ function CurrentVisitorsCtrl() {
   vm.people = [
     { name: 'Florens',
       time: 10},
-    { name: 'Adriana',
+    { name: 'Christian',
       time: 2},
     { name: 'Mark',
       time: 31}

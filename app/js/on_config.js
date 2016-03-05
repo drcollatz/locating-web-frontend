@@ -19,6 +19,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
     controller: 'SetupPeopleCtrl as setupPeople',
     templateUrl: 'setupPeople.html',
     title: 'Setup People'
+  }).state('EditPerson', {
+    url: '/person/{person:json}',
+    controller: 'EditPersonCtrl as editPerson',
+    templateUrl: 'editPerson.html',
+    title: 'Edit Person'
   });
 
   $urlRouterProvider.otherwise('/');

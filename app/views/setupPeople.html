@@ -1,17 +1,45 @@
-<h1>{{ setupPeople.title }}</h1>
-
+<div class="row">
+  <div class="col-md-8">
+    <h1><fa name="gear"></fa> {{ setupPeople.title }}</h1>
+    <h3>Create entries for all persons you want to track</h3>
+  </div>
+  <div class="col-md-4">
+    <button class='btn btn-success btn-lg pull-right'><fa name="plus"></fa> Add a new Person</button>
+  </div>
+</div>
+<!--
+<div class="row">
+  <div class="col-md-8">
+    <div class="input-groupp input-group-lg">
+      <input type="text" class="form-control" placeholder="search" aria-describedby="basic-addon2">
+      <span class="input-group-addon" id="basic-addon2">search</span>
+    </div>
+  </div>
+</div>
+-->
 <div class="row top-buffer">
   <div class="col-md-12">
     <table class="table table-condensed">
+      <thead>
+        <th><input type="checkbox"></th>
+        <th>Name</th>
+        <th>Macs</th>
+      </thead>
+      <tbody>
       <tr ng-repeat="person in setupPeople.people | orderBy:'+name'">
-        <td><h3>{{ person.name }}<br /><small><fa name="mobile"></fa> 1 device</small></h3></t>
-        <td class="text-right"><h3><code>{{ person.mac }}</code></h3></td>
-        <td class="text-right"><button class='btn btn-success'><fa name="edit"></fa> Edit</button></td>
-
+        <td class="vert-align"><input type="checkbox"></td>
+        <td class="vert-align"><a href="#"><h3>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.macs.length}} device</small></h3></a></t>
+        <td class="vert-align">
+          <ul class="list-inline">
+            <li ng-repeat="mac in person.macs"><h4><code>{{ mac }}</code></h4></li>
+          </ul>
+        </td>
+        <td class="text-right vert-align">
+          <button class='btn btn-info'><fa name="edit"></fa></button>
+          <button class='btn btn-danger'><fa name="trash"></fa></button>
+        </td>
       </tr>
+    </tbody>
     </table>
-
-
-
   </div>
 </div>

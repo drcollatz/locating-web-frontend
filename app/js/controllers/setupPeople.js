@@ -7,11 +7,15 @@ function SetupPeopleCtrl() {
 
   vm.people = [
     { name: 'Florens',
-      mac: 'adsfadfasdf'},
-    { name: 'Adriana',
-      mac: 'asdfasdfasdf'},
+      macs: ['00-80-41-ae-fd-7e']},
+    { name: 'Christian',
+      macs: ['00-80-41-ae-fd-7e','00-80-41-ae-fd-8e']},
     { name: 'Mark',
-      mac: 'adfadfafd'}
+      macs: ['00-80-41-ae-fd-7e']},
+    { name: 'Stefan',
+      macs: ['00-80-41-ae-fd-7e']},
+    { name: 'Danny',
+      macs: ['00-80-41-ae-fd-7e']}
     ];
 
 }
