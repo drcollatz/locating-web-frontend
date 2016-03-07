@@ -5,8 +5,8 @@ require('angular-ui-bootstrap');
 require('angular-fontawesome');
 require('spin.js');
 require('angular-spinner');
-require("wu");
-require("angular-chart.js");
+require('wu');
+require('angular-chart.js');
 
 // angular modules
 import constants from './constants';

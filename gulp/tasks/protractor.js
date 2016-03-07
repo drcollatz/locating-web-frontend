@@ -1,9 +1,8 @@
 'use strict';
 
-import config       from '../config';
-import testServer   from '../util/testServer';
-import express      from 'express';
-import gulp         from 'gulp';
+import config     from '../config';
+import testServer from '../util/testServer';
+import gulp       from 'gulp';
 import {
   protractor,
   webdriver
@@ -16,7 +15,7 @@ gulp.task('protractor', ['prod', 'webdriver'], function(cb) {
   const testFiles = gulp.src('test/e2e/**/*.js');
 
   testServer({
-    port: config.browserPort,
+    port: config.testPort,
     dir: config.buildDir
   }).then((server) => {
     testFiles.pipe(protractor({
