@@ -33,6 +33,25 @@ function EditPersonCtrl($stateParams, $location, PeopleService, $scope) {
     $location.path("/people");
   }
 
+  vm.addDevice = function(){
+    var device = {  name: vm.newName,
+                    mac:  vm.newMac
+                  };
+
+    if(!vm.person.devices){
+      vm.person.devices = [];
+    }
+    vm.person.devices.push(device);
+    vm.newName = null;
+    vm.newMac = null;
+  }
+
+  vm.deleteDevice = function(device){
+    vm.person.devices.splice(vm.person.devices.indexOf(device), 1);
+  }
+
+
+
 }
 
 export default {

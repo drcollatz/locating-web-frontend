@@ -1,7 +1,13 @@
-<h1>{{ visitors.title }}</h1>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+    <h1>{{ visitors.title }}</h1>
+
+  </div>
+</div>
 
 <div class="row top-buffer">
-  <div class="col-md-12">
+  <div class="col-md-8 col-md-offset-2">
 
     <ul class="media-list">
       <li ng-repeat="person in visitors.people | orderBy:'+time'"" class="media">

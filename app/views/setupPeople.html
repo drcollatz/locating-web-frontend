@@ -1,42 +1,64 @@
 <div class="row">
-  <div class="col-md-8">
-    <h1><fa name="gear"></fa> {{ setupPeople.title }}</h1>
-    <!--<h3>Create entries for all persons you want to track</h3>-->
-  </div>
-  <div class="col-md-4">
-    <button class='btn btn-success btn-lg pull-right' ng-click="setupPeople.openDetails()"><fa name="plus"></fa> Add a new Person</button>
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="row">
+      <div class="col-md-8">
+        <h1><!--<fa name="gear"></fa> -->{{ setupPeople.title }}</h1>
+
+      </div>
+      <!--
+      <div class="col-md-4">
+        <button class='btn btn-primary btn-lg pull-right' ng-click="setupPeople.openDetails()"><fa name="plus"></fa> Add a new Person</button>
+      </div>
+    -->
+    </div>
+    <!--
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Create entries for all persons you want to track</h3>
+      </div>
+    </div>
+-->
+
   </div>
 </div>
 <!--
-<div class="row">
-  <div class="col-md-8">
-    <div class="input-groupp input-group-lg">
-      <input type="text" class="form-control" placeholder="search" aria-describedby="basic-addon2">
-      <span class="input-group-addon" id="basic-addon2">search</span>
+<div class="row top-buffer">
+  <div class="col-md-4">
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+      <span class="input-group-addon" id="sizing-addon1">search</span>
     </div>
   </div>
 </div>
 -->
+
 <div class="row top-buffer">
-  <div class="col-md-12">
+  <div class="col-md-8 col-md-offset-2">
+    <button class='btn btn-primary btn-md pull-right' ng-click="setupPeople.openDetails()"><fa name="plus"></fa> Add a new Person</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
     <table class="table table-condensed">
       <thead>
         <th><input type="checkbox"></th>
         <th>Name</th>
-        <th>Macs</th>
+        <th>Devices</th>
       </thead>
       <tbody>
       <tr ng-repeat="person in setupPeople.people | orderBy:'+name'">
         <td class="vert-align"><input type="checkbox"></td>
-        <td class="vert-align"><a href="#"><h3>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.macs.length}} device</small></h3></a></t>
+        <td class="vert-align"><h3>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.devices.length}} device</small></h3></t>
         <td class="vert-align">
           <ul class="list-inline">
-            <li ng-repeat="mac in person.macs"><h4><code>{{ mac }}</code></h4></li>
+            <li ng-repeat="device in person.devices"><input type="checkbox" ng-model="device.enabled"> {{ device.name }}</li>
           </ul>
         </td>
         <td class="text-right vert-align">
-          <button class='btn btn-info' ng-click="setupPeople.openDetails(person)"><fa name="edit"></fa></button>
-          <button class='btn btn-danger'><fa name="trash"></fa></button>
+          <button class='btn btn-default' ng-click="setupPeople.openDetails(person)"><fa name="edit"></fa> Edit</button>
+          <button class='btn btn-default'><fa name="trash"></fa> Delete</button>
 
         </td>
       </tr>

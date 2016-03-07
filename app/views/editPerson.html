@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h1><fa name="user"></fa> {{ editPerson.title }}</h1>
+    <h1><!--<fa name="user"></fa> -->{{ editPerson.title }}</h1>
   </div>
 </div>
 <div class="row top-buffer">
@@ -10,19 +10,39 @@
        <label class="control-label col-sm-2" for="name">Name</label>
        <div class="col-sm-10">
          <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="editPerson.person.name">
+         <span class="help-block">The name will be displayed if any device has been detected.</span>
        </div>
      </div>
-     <div class="form-group form-group-lg">
-       <label class="control-label col-sm-2" for="macs">Macs</label>
-       <div class="col-sm-10">
-         <input type="text" class="form-control" id="macs" ng-list placeholder="Enter macs" ng-model="editPerson.person.macs">
-         <span class="help-block">Comma separated list of mac addresses.</span>
+     <div class="form-group form-group-md">
+       <label class="control-label col-sm-2" for="deviceName">Devices</label>
+         <div class="col-sm-5">
+           <input type="text" class="form-control" id="deviceName" placeholder="enter a name for the device" ng-model="editPerson.newName">
+         </div>
+         <div class="col-sm-4">
+           <input type="text" class="form-control" id="deviceMac" placeholder="enter a mac address" ng-model="editPerson.newMac">
+         </div>
+         <div class="col-sm-1">
+           <button class='btn btn-success btn-block' ng-click="editPerson.addDevice()"><fa name="plus"></fa></button>
+         </div>
+      </div>
+      <div class="form-group form-group-md" ng-repeat="device in editPerson.person.devices">
+        <label class="control-label col-sm-2" for="deviceName"></label>
+
+          <div class="col-sm-5">
+            <input type="text" class="form-control" id="deviceName" placeholder="enter a name for the device" ng-model="device.name">
+          </div>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="deviceMac" placeholder="enter a mac address" ng-model="device.mac">
+          </div>
+          <div class="col-sm-1">
+            <button class='btn btn-danger btn-block' ng-click="editPerson.deleteDevice(device)"><fa name="minus"></fa></button>
+          </div>
        </div>
-     </div>
+    </div>
    </form>
   </div>
  </div>
- <div class="row">
+ <div class="row top-buffer">
    <div class="col-md-8 col-md-offset-2">
      <div class="pull-right">
        <button class='btn btn-default btn-lg' ng-click="editPerson.close()"><fa name="remove"></fa> Cancel</button>

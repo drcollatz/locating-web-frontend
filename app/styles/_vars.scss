@@ -29,9 +29,11 @@ $font-size--xl: 32px;
 $name-circle-size: 60px;
 
 // customize bootstrap
-$navbar-inverse-bg: $Bosch_Blau_75;
+
+$navbar-inverse-bg: #00796b;
 $navbar-inverse-link-color: white;
-$brand-primary: $Bosch_Blau_75;
-$brand-success: $green;
-$brand-info: $Bosch_Hellblau;
-$brand-warning: $Bosch_Gelbgruen;
+$brand-primary: #009688;
+$brand-success: #4caf50;
+$brand-info: #03a9f4;
+$brand-warning: #ffeb3b;
+$brand-danger: #ff5252;

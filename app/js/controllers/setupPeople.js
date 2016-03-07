@@ -3,7 +3,7 @@ function SetupPeopleCtrl($location, PeopleService) {
   // ViewModel
   const vm = this;
 
-  vm.title = 'Setup';
+  vm.title = 'Setup people';
 
   PeopleService.get().then(x => {
     vm.people = x;
