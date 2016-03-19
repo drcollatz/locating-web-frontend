@@ -1,21 +1,35 @@
-function SetupPeopleCtrl($location, PeopleService) {
-    'ngInject';
+function SetupPeopleCtrl($location, Person) {
+  'ngInject';
   // ViewModel
   const vm = this;
 
   vm.title = 'Setup people';
 
-  PeopleService.get().then(x => {
+  Person.query(x => {
     vm.people = x;
-  });
+  })
 
-  vm.openDetails = function ( person ) {
-    if(person){
-      $location.path("/person/"+angular.toJson(person));
-    }else{
+  vm.openDetails = function(person) {
+    if (person) {
+      var id = person._links.self.href.split('/').pop();
+      $location.path("/person/" + id);
+    } else {
       $location.path("/person");
     }
   };
+
+  vm.deletePerson = function(person) {
+    person.remove(function() {
+      vm.people.splice(vm.people.indexOf(person), 1);
+    });
+  };
+
+
+  vm.updatePerson = function(person) {
+    person.save();
+  };
+
+
 }
 
 export default {

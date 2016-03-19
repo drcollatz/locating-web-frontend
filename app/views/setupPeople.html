@@ -53,12 +53,12 @@
         <td class="vert-align"><h3>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.devices.length}} device</small></h3></t>
         <td class="vert-align">
           <ul class="list-inline">
-            <li ng-repeat="device in person.devices"><input type="checkbox" ng-model="device.enabled"> {{ device.name }}</li>
+            <li ng-repeat="device in person.devices"><input type="checkbox" ng-model="device.enabled" ng-click="setupPeople.updatePerson(person)"> {{ device.name }}</li>
           </ul>
         </td>
         <td class="text-right vert-align">
           <button class='btn btn-default' ng-click="setupPeople.openDetails(person)"><fa name="edit"></fa> Edit</button>
-          <button class='btn btn-default'><fa name="trash"></fa> Delete</button>
+          <button class='btn btn-default' ng-click="setupPeople.deletePerson(person)"><fa name="trash"></fa> Delete</button>
 
         </td>
       </tr>

@@ -1,0 +1,64 @@
+function PersonService($http, SpringDataRestAdapter, AppSettings) {
+  'ngInject';
+
+  var _ = require('lodash');
+
+  function Person(person) {
+    if (person._resources) {
+      person.resources = person._resources("self", {}, {
+        update: {
+          method: 'PUT'
+        }
+      });
+      person.save = function(callback) {
+        person.resources.update(person, function() {
+          callback && callback(person);
+        });
+      };
+
+      person.remove = function(callback) {
+        person.resources.remove(function() {
+          callback && callback(person);
+        });
+      };
+    } else {
+      person.save = function(callback) {
+        Person.resources.save(person, function(item, headers) {
+          var deferred = $http.get(headers().location);
+          return SpringDataRestAdapter.process(deferred).then(function(newPerson) {
+            callback && callback(new Person(newPerson));
+          });
+        });
+      };
+    }
+
+    return person;
+  }
+
+  Person.query = function(callback) {
+    var deferred = $http.get(AppSettings.apiUrl + '/people');
+    return SpringDataRestAdapter.process(deferred).then(function(data) {
+      Person.resources = data._resources("self");
+      callback && callback(_.map(data._embeddedItems, function(item) {
+        return new Person(item);
+      }));
+    });
+  };
+
+  Person.get = function(id, callback) {
+    var deferred = $http.get(AppSettings.apiUrl + '/people/' + id);
+    return SpringDataRestAdapter.process(deferred).then(function(data) {
+      callback && callback(new Person(data));
+    });
+  };
+
+  Person.resources = null;
+  Person.query();
+  return Person;
+
+}
+
+export default {
+  name: 'Person',
+  fn: PersonService
+};
