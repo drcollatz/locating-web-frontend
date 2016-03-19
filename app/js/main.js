@@ -7,6 +7,7 @@ require('spin.js');
 require('angular-spinner');
 require('wu');
 require('angular-chart.js');
+require('lodash');
 
 // angular modules
 import constants from './constants';
