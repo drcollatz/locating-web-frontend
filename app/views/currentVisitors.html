@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8">
 
     <h1>{{ visitors.title }}</h1>
 
@@ -7,17 +7,17 @@
 </div>
 
 <div class="row top-buffer">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8">
 
     <ul class="media-list">
-      <li ng-repeat="person in visitors.people | orderBy:'+time'"" class="media">
+      <li ng-repeat="person in visitors.people" class="media">
         <div class="media-left">
           <a href="#">
-            <div class="circle">{{ person.name | TruncateFilter:true:1:''}}</div>
+            <div class="circle">{{ person.name | TruncateFilter:true:1:' '}}</div>
           </a>
         </div>
         <div class="media-body">
-          <h2 class="media-heading">{{ person.name }}<br /><small>since {{ person.time }} minutes</small></h2>
+          <h2 class="media-heading">{{ person.name }}<br /><small>with {{ visitors.transformDevices(person.devices) }}</small></h2>
         </div>
       </li>
     </ul>

@@ -1,11 +1,13 @@
-.circle
-    {
-      width:$name-circle-size;
-      height:$name-circle-size;
-      border-radius:250px;
-      font-size:$name-circle-size;
-      color:#fff;
-      line-height:$name-circle-size;
-      text-align:center;
-      background: $gray-lighter;
-    }
+.circle {
+  width: $name-circle-size;
+  height: $name-circle-size;
+  border-radius: $name-circle-size / 4;
+  font-size: $name-circle-size / 2;
+  font-weight: bold;
+  color: #fff;
+  line-height: $name-circle-size;
+  text-align: center;
+  // background: $gray-lighter;
+  background: $brand-primary;
+  margin-right: $name-circle-size / 4;
+}

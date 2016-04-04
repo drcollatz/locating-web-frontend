@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-12">
 
     <div class="row">
       <div class="col-md-8">
@@ -22,47 +22,65 @@
 
   </div>
 </div>
-<!--
-<div class="row top-buffer">
+
+
+
+<div ng-hide="setupPeople.people.length<1" class="row top-buffer">
   <div class="col-md-4">
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-      <span class="input-group-addon" id="sizing-addon1">search</span>
+    <div class="input-group input-group-md">
+      <!-- <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+      <span class="input-group-addon" id="sizing-addon1">search</span> -->
     </div>
   </div>
-</div>
--->
-
-<div class="row top-buffer">
-  <div class="col-md-8 col-md-offset-2">
-    <button class='btn btn-primary btn-md pull-right' ng-click="setupPeople.openDetails()"><fa name="plus"></fa> Add a new Person</button>
+  <div class="col-md-8">
+    <button class='btn btn-primary btn-md pull-right' ng-click="setupPeople.openDetails()">
+      <fa name="plus"></fa> Add a new Person</button>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <table class="table table-condensed">
+  <div class="col-md-12">
+    <!-- <div ng-hide="setupPeople.people.length>0" class="top-buffer alert alert-warning">
+      <p>No people are configured to be located!</p>
+      <br>
+      <button class='btn btn-primary btn-md' ng-click="setupPeople.openDetails()">
+        <fa name="plus"></fa> Add a new Person</button>
+    </div> -->
+    <table ng-hide="setupPeople.people.length<1" class="table table-hover">
       <thead>
-        <th><input type="checkbox"></th>
+        <th>
+          <input type="checkbox">
+        </th>
         <th>Name</th>
+        <th>Status</th>
+        <th>Last seen</th>
         <th>Devices</th>
       </thead>
       <tbody>
-      <tr ng-repeat="person in setupPeople.people | orderBy:'+name'">
-        <td class="vert-align"><input type="checkbox"></td>
-        <td class="vert-align"><h3>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.devices.length}} device</small></h3></t>
-        <td class="vert-align">
-          <ul class="list-inline">
-            <li ng-repeat="device in person.devices"><input type="checkbox" ng-model="device.enabled" ng-click="setupPeople.updatePerson(person)"> {{ device.name }}</li>
-          </ul>
-        </td>
-        <td class="text-right vert-align">
-          <button class='btn btn-default' ng-click="setupPeople.openDetails(person)"><fa name="edit"></fa> Edit</button>
-          <button class='btn btn-default' ng-click="setupPeople.deletePerson(person)"><fa name="trash"></fa> Delete</button>
+        <tr ng-repeat="person in setupPeople.people | orderBy:'+name'">
+          <td class="vert-align">
+            <input type="checkbox">
+          </td>
+          <td class="vert-align">
+            <span>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.devices.length}} device</small></span></td>
+          <td class="vert-align">
+            <fa name="check-circle"></fa> active</td>
+            <td class="vert-align">Currently online (for 37 minutes)</td>
+          <td class="vert-align">
+            <ul class="list-inline">
+              <li ng-repeat="device in person.devices">
+                <input type="checkbox" ng-model="device.enabled" ng-click="setupPeople.updatePerson(person)"> {{ device.name }}</li>
+            </ul>
+          </td>
+          <td class="text-right vert-align">
+            <button class='btn btn-default btn-sm' ng-click="setupPeople.openDetails(person)">
+              <fa name="edit"></fa> Edit</button>
+            <button class='btn btn-default btn-sm' ng-click="setupPeople.deletePerson(person)">
+              <fa name="trash"></fa> Delete</button>
 
-        </td>
-      </tr>
-    </tbody>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

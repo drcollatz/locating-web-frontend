@@ -12,9 +12,9 @@ function SetupPeopleCtrl($location, Person) {
   vm.openDetails = function(person) {
     if (person) {
       var id = person._links.self.href.split('/').pop();
-      $location.path("/person/" + id);
+      $location.path('/person/' + id);
     } else {
-      $location.path("/person");
+      $location.path('/person');
     }
   };
 

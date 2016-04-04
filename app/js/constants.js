@@ -1,6 +1,6 @@
 const AppSettings = {
-  appTitle: 'Example Application',
-  apiUrl: 'http://localhost:8080'
+  appTitle: 'Locating',
+  apiUrl: 'https://young-beach-90165.herokuapp.com'
 };
 
 export default AppSettings;

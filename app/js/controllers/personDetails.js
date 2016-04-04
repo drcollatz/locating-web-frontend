@@ -1,23 +1,23 @@
-function PersonDetailsCtrl($stateParams, $location, Person, $scope) {
+function PersonDetailsCtrl($stateParams, $location, Person) {
   'ngInject';
 
   // ViewModel
   const vm = this;
   var id = $stateParams.id;
 
-  var update = false;
+
 
   if (id) {
     Person.get(id, function(person){
       vm.person = person;
     });
     vm.title = 'Edit Person';
-    update = true;
+
   } else {
     vm.title = 'New Person';
     vm.person = Person({
-      name: "",
-      mac: "",
+      name: '',
+      mac: '',
       devices: []
     });
   }
@@ -29,7 +29,7 @@ function PersonDetailsCtrl($stateParams, $location, Person, $scope) {
   }
 
   vm.close = function() {
-    $location.path("/people");
+    $location.path('/people');
   }
 
   vm.addDevice = function() {

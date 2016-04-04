@@ -5,7 +5,7 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
 
   function Person(person) {
     if (person._resources) {
-      person.resources = person._resources("self", {}, {
+      person.resources = person._resources('self', {}, {
         update: {
           method: 'PUT'
         }
@@ -38,7 +38,7 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
   Person.query = function(callback) {
     var deferred = $http.get(AppSettings.apiUrl + '/people');
     return SpringDataRestAdapter.process(deferred).then(function(data) {
-      Person.resources = data._resources("self");
+      Person.resources = data._resources('self');
       callback && callback(_.map(data._embeddedItems, function(item) {
         return new Person(item);
       }));
