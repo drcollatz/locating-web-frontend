@@ -6,8 +6,16 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider
   .state('Home', {
     url: '/',
-    controller: 'ExampleCtrl as home',
-    templateUrl: 'home.html',
+    views: {
+      'content': {
+        controller: 'ExampleCtrl as home',
+        templateUrl: 'home.html'
+      },
+      'navigation': {
+        controller: 'NavigationCtrl as navigation',
+        templateUrl: 'navigation.html'
+      }
+    },
     title: 'Home'
   });
 

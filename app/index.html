@@ -11,19 +11,9 @@
       <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-      <!-- NAVIGATION -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" ui-sref="Home">Example Application</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li><a ui-sref="Home">Home</a></li>
-          </ul>
-        </div>
-      </nav>
 
-      <div class="container" ui-view></div>
+      <div class="container" ui-view="navigation"></div>
+      <div class="container" ui-view="content"></div>
 
       <script src="js/main.js"></script>
   </body>
