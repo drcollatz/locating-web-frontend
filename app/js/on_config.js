@@ -6,28 +6,68 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider
     .state('Home', {
       url: '/',
-      controller: 'ExampleCtrl as home',
-      templateUrl: 'home.html',
-      title: 'Home'
+      views: {
+        'content': {
+          controller: 'CurrentVisitorsCtrl as visitors',
+          templateUrl: 'currentVisitors.html'
+        },
+        'navigation': {
+          controller: 'NavigationCtrl as navigation',
+          templateUrl: 'navigation.html'
+        }
+      },
+      title: 'Visitors'
     }).state('Visitors', {
       url: '/visitors',
-      controller: 'CurrentVisitorsCtrl as visitors',
-      templateUrl: 'currentVisitors.html',
+      views: {
+        'content': {
+          controller: 'CurrentVisitorsCtrl as visitors',
+          templateUrl: 'currentVisitors.html'
+        },
+        'navigation': {
+          controller: 'NavigationCtrl as navigation',
+          templateUrl: 'navigation.html'
+        }
+      },
       title: 'Visitors'
     }).state('SetupPeople', {
       url: '/people',
-      controller: 'SetupPeopleCtrl as setupPeople',
-      templateUrl: 'setupPeople.html',
+      views: {
+        'content': {
+          controller: 'SetupPeopleCtrl as setupPeople',
+          templateUrl: 'setupPeople.html',
+        },
+        'navigation': {
+          controller: 'NavigationCtrl as navigation',
+          templateUrl: 'navigation.html'
+        }
+      },
       title: 'Setup People'
     }).state('EditPerson', {
       url: '/person/:id',
-      controller: 'PersonDetailsCtrl as editPerson',
-      templateUrl: 'editPerson.html',
+      views: {
+        'content': {
+          controller: 'PersonDetailsCtrl as editPerson',
+          templateUrl: 'editPerson.html',
+        },
+        'navigation': {
+          controller: 'NavigationCtrl as navigation',
+          templateUrl: 'navigation.html'
+        }
+      },
       title: 'Edit Person'
     }).state('NewPerson', {
       url: '/person',
-      controller: 'PersonDetailsCtrl as editPerson',
-      templateUrl: 'editPerson.html',
+      views: {
+        'content': {
+          controller: 'PersonDetailsCtrl as editPerson',
+          templateUrl: 'editPerson.html',
+        },
+        'navigation': {
+          controller: 'NavigationCtrl as navigation',
+          templateUrl: 'navigation.html'
+        }
+      },
       title: 'Edit Person'
     });
 

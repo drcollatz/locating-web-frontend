@@ -3,7 +3,8 @@
 
     <div class="row">
       <div class="col-md-8">
-        <h1><!--<fa name="gear"></fa> -->{{ setupPeople.title }}</h1>
+        <h1 class="hidden-xs"><!--<fa name="gear"></fa> -->{{ setupPeople.title }}</h1>
+        <h1 class="visible-xs text-center"><!--<fa name="gear"></fa> -->{{ setupPeople.title }}</h1>
 
       </div>
       <!--
@@ -27,13 +28,15 @@
 
 <div ng-hide="setupPeople.people.length<1" class="row top-buffer">
   <div class="col-md-4">
-    <div class="input-group input-group-md">
-      <!-- <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
-      <span class="input-group-addon" id="sizing-addon1">search</span> -->
-    </div>
+    <!-- <div class="input-group input-group-md">
+      <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+      <span class="input-group-addon" id="sizing-addon1">search</span>
+    </div> -->
   </div>
   <div class="col-md-8">
-    <button class='btn btn-primary btn-md pull-right' ng-click="setupPeople.openDetails()">
+    <button class='btn btn-primary btn-md pull-right hidden-xs' ng-click="setupPeople.openDetails()">
+      <fa name="plus"></fa> Add a new Person</button>
+    <button class='btn btn-primary btn-md btn-block visible-xs' ng-click="setupPeople.openDetails()">
       <fa name="plus"></fa> Add a new Person</button>
   </div>
 </div>
@@ -47,26 +50,26 @@
         <fa name="plus"></fa> Add a new Person</button>
     </div> -->
     <table ng-hide="setupPeople.people.length<1" class="table table-hover">
-      <thead>
-        <th>
+      <thead class="hidden-xs">
+        <th class="hidden-xs">
           <input type="checkbox">
         </th>
         <th>Name</th>
-        <th>Status</th>
-        <th>Last seen</th>
-        <th>Devices</th>
+        <th class="hidden-xs">Status</th>
+        <th class="hidden-xs">Last seen</th>
+        <th class="hidden-xs">Devices</th>
       </thead>
       <tbody>
         <tr ng-repeat="person in setupPeople.people | orderBy:'+name'">
-          <td class="vert-align">
+          <td class="vert-align hidden-xs">
             <input type="checkbox">
           </td>
           <td class="vert-align">
             <span>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.devices.length}} device</small></span></td>
-          <td class="vert-align">
+          <td class="vert-align hidden-xs">
             <fa name="check-circle"></fa> active</td>
-            <td class="vert-align">Currently online (for 37 minutes)</td>
-          <td class="vert-align">
+          <td class="vert-align hidden-xs">Currently online (for 37 minutes)</td>
+          <td class="vert-align hidden-xs">
             <ul class="list-inline">
               <li ng-repeat="device in person.devices">
                 <input type="checkbox" ng-model="device.enabled" ng-click="setupPeople.updatePerson(person)"> {{ device.name }}</li>
@@ -74,9 +77,9 @@
           </td>
           <td class="text-right vert-align">
             <button class='btn btn-default btn-sm' ng-click="setupPeople.openDetails(person)">
-              <fa name="edit"></fa> Edit</button>
+              <fa name="edit"></fa><span class="hidden-xs"> Edit</span></button>
             <button class='btn btn-default btn-sm' ng-click="setupPeople.deletePerson(person)">
-              <fa name="trash"></fa> Delete</button>
+              <fa name="trash"></fa><span class="hidden-xs"> Delete</span></button>
 
           </td>
         </tr>

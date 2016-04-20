@@ -2,6 +2,7 @@ import angular from 'angular';
 
 require('angular-animate');
 require('angular-ui-bootstrap');
+require('ui-navbar');
 require('angular-fontawesome');
 require('spin.js');
 require('angular-spinner');

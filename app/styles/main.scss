@@ -12,3 +12,8 @@ body {
   padding: $half-space;
   padding-top: $body-top-space;
 }
+@media (max-width: 480px){
+  body {
+    padding-top: $body-top-space / 1.5;
+  }
+}
