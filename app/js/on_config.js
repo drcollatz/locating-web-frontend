@@ -56,6 +56,19 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
         }
       },
       title: 'Edit Person'
+    }).state('Signals', {
+      url: '/signals',
+      views: {
+        'content': {
+          controller: 'SignalsCtrl as signalsCtrl',
+          templateUrl: 'signals.html',
+        },
+        'navigation': {
+          controller: 'NavigationCtrl as navigation',
+          templateUrl: 'navigation.html'
+        }
+      },
+      title: 'Received signals'
     }).state('NewPerson', {
       url: '/person',
       views: {

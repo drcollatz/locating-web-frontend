@@ -1,9 +1,7 @@
 <div class="row">
   <div class="col-md-8">
-
-    <h1 class="hidden-xs">{{ visitors.title }}</h1>
-    <h1 class="visible-xs text-center">{{ visitors.title }}</h1>
-
+    <h2 class="hidden-xs">{{ visitors.title }}</h2>
+    <h2 class="visible-xs text-center">{{ visitors.title }}</h2>
   </div>
 </div>
 
@@ -11,14 +9,14 @@
   <div class="col-md-8">
 
     <ul class="media-list">
-      <li ng-repeat="person in visitors.people" class="media">
+      <li ng-repeat="person in visitors.people | orderBy:'-lastSeen'" class="media" ng-style="{'opacity': visitors.calculateOpacity(person.lastSeen)}">
         <div class="media-left">
           <a href="#">
             <div class="circle">{{ person.name | TruncateFilter:true:1:' '}}</div>
           </a>
         </div>
         <div class="media-body">
-          <h2 class="media-heading">{{ person.name }}<br /><small>with {{ visitors.transformDevices(person.devices) }}</small></h2>
+          <h3 class="media-heading">{{ person.name }}<br /><small>{{ visitors.calculateMinutesSeen(person.lastSeen) | WhenFilter }} with {{ visitors.transformDevices(person.devices) }}</small></h3>
         </div>
       </li>
     </ul>

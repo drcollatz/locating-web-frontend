@@ -3,6 +3,8 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
 
   var _ = require('lodash');
 
+
+
   function Person(person) {
     if (person._resources) {
       person.resources = person._resources('self', {}, {
@@ -51,6 +53,28 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
       callback && callback(new Person(data));
     });
   };
+
+  Person.getByDevices = () => {
+    return new Promise((resolve, reject) => {
+      Person.query(result => {
+        let byDevices = _(result).chain()
+          .map(p => _.map(p.devices, d => {
+            return {
+              name: p.name,
+              device: d.name,
+              mac: d.mac,
+              enabled: d.enabled
+            }
+          }))
+          .flattenDeep()
+          // .filter(x => x.enabled) // NOTE: Only enabled devices
+          .keyBy('mac')
+          .value()
+
+        resolve(byDevices);
+      });
+    });
+  }
 
   Person.resources = null;
   Person.query();

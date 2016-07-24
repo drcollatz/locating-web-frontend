@@ -1,0 +1,35 @@
+.calendar th {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+.calendar td {
+  text-align: center;
+  height: 1em;
+}
+.slot {
+  display: inline-block;
+  background-color: rgba(146, 220, 229, 0.5);
+  border-left: 3px solid rgba(146, 220, 229, 1.0);
+}
+.calendar tr:nth-child(4n+0) {
+  border-bottom: 1px solid #ddd;
+}
+.calendar td {
+  text-align: center;
+  border-left: 1px solid #ddd;
+  width: 13.5%;
+}
+.calendar td:first-child {
+  border: 0;
+  width: 5.5%;
+}
+.calendar table {
+  width: 100%;
+}
+.signals-table small {
+  font-size: 80%;
+}
+.signals-table .label {
+  margin-right: 2px;
+}

@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="hidden-xs"><!--<fa name="gear"></fa> -->{{ signalsCtrl.title }}</h2>
+    <h2 class="visible-xs text-center"><!--<fa name="gear"></fa> -->{{ signalsCtrl.title }}</h2>
+  </div>
+</div>
+<div class="row top-buffer-sm">
+  <div class="col-md-12">
+    <h3>Search</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <p class="input-group">
+      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="signalsCtrl.begin" is-open="signalsCtrl.popup1.opened" datepicker-options="signalsCtrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="signalsCtrl.altInputFormats"
+      />
+      <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="signalsCtrl.open1()"><fa name="calendar"></fa></button>
+          </span>
+    </p>
+  </div>
+  <div class="col-md-2">
+    <p class="input-group">
+      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="signalsCtrl.end" is-open="signalsCtrl.popup2.opened" datepicker-options="signalsCtrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="signalsCtrl.altInputFormats"
+      />
+      <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="signalsCtrl.open2()"><fa name="calendar"></fa></button>
+          </span>
+    </p>
+  </div>
+  <div class="col-md-1">
+    <button ng-click="signalsCtrl.onRefreshbutton()" class="btn btn-primary">
+      <!-- <fa ng-attr-spin="{{signalsCtrl.searching}}" name="search"></fa> -->
+      <fa ng-show="signalsCtrl.searching" ng-attr-spin="{{signalsCtrl.searching}}" name="refresh"></fa>
+      <fa ng-hide="signalsCtrl.searching"  name="search"></fa>
+    </button>
+  </div>
+</div>
+
+<!-- <div ng-show="signalsCtrl.status != null" class="row">
+  <div class="col-md-12">
+    <small><fa name="refresh" spin></fa> {{ signalsCtrl.status }}</div></small>
+  </div> -->
+
+  <div ng-hide="signalsCtrl.signalsCounted.length == 0">
+    <div class="row top-buffer-sm">
+      <div class="col-md-12">
+        <h3>Signals</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-hover signals-table">
+          <thead class="hidden-xs">
+            <th class="hidden-xs">
+              <input type="checkbox">
+            </th>
+            <th>Mac</th>
+            <th>SSIDs</th>
+            <th>Times seen</th>
+            <th>Last seen</th>
+            <th>Mean RSSI</th>
+            <th>Max RSSI</th>
+            <th>Person</th>
+            <th>Device</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="signal in signalsCtrl.signalsCounted | orderBy:'-seen'">
+              <td class="vert-align hidden-xs">
+                <input ng-click="signalsCtrl.select(signal.mac, select)" ng-model="select" type="checkbox">
+              </td>
+              <td class="vert-align"><code>{{ signal.mac }}</code>
+                <br><small>{{ signal.vendor | TruncateFilter:false:20}}</small></td>
+              <td class="vert-align"><span ng-repeat="ssid in signal.ssids"><span class="ssid-label label label-default">{{ ssid }}</span><br ng-if="!(($index + 1) % 4)" /></span></td>
+              <td class="vert-align"><span class="badge">{{ signal.seen }}</span></td>
+              <td class="vert-align">{{ signal.lastSeen | date:'short' }}</td>
+              <td class="vert-align">{{signal.rssi}}</td>
+              <td class="vert-align">{{signal.minRssi}}</td>
+              <td class="vert-align">{{ signal.person }}</td>
+              <td class="vert-align">{{ signal.device }}</td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row top-buffer-sm">
+      <div class="col-md-12">
+        <h3>Calendar
+      <small>
+        <button ng-click="signalsCtrl.prevWeek()" class="btn btn-link">
+            <fa name="chevron-left"></fa>
+          </button>
+          week
+          <button ng-click="signalsCtrl.nextWeek()" class="btn btn-link">
+            <fa name="chevron-right"></fa>
+          </button>
+        </small>
+      </h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="calendar">
+          <table>
+            <thhead>
+              <th></th>
+              <th ng-repeat="dayOfWeek in signalsCtrl.days">{{dayOfWeek | date:'EEE d.M.yyyy'}}</th>
+            </thhead>
+            <tbody>
+              <tr ng-repeat="hour in signalsCtrl.hours">
+                <td>{{hour | CalendarHour}}</td>
+                <td ng-repeat="day in signalsCtrl.days"><span ng-style="{'width': (100 / signalsCtrl.macsInSlot(day, hour).length) +'%' }" class="slot" ng-repeat="mac in signalsCtrl.macsInSlot(day, hour)">&nbsp;</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

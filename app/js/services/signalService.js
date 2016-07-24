@@ -56,6 +56,31 @@ function SignalService($http, SpringDataRestAdapter, AppSettings) {
     });
   };
 
+
+
+  Signal.queryByDate = function(start, end, callback) {
+
+
+    var config = {
+      params: {
+        start: start.toISOString(),
+        end: end.toISOString()
+      }
+
+    };
+
+    var deferred = $http.get(AppSettings.apiUrl + '/signals/search/findByTimestampBetween', config);
+    return SpringDataRestAdapter.process(deferred).then(function(data) {
+      Signal.resources = data._resources('self');
+      callback && callback(_.map(data._embeddedItems, function(item) {
+        return new Signal(item);
+      }));
+    });
+  };
+
+
+
+
   Signal.query = function(callback) {
     var deferred = $http.get(AppSettings.apiUrl + '/signals');
     return SpringDataRestAdapter.process(deferred).then(function(data) {

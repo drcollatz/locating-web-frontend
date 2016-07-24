@@ -4,62 +4,35 @@ function LocatingService($http, Signal, Person) {
   var _ = require('lodash');
   const service = {};
 
-
-
-  var getMacs = function() {
-    var personByMac = {};
-    return new Promise((resolve, reject) => {
-      Person.query(x => {
-        _.forEach(x, person => {
-          var enabledDevices = (_.filter(person.devices, d => d.enabled));
-          _.forEach(enabledDevices, device => {
-            var entry = {
-              name: person.name,
-              device: device.name
-            }
-            personByMac[device.mac] = entry;
-          });
-        });
-        resolve(personByMac);
-      });
-    });
-  };
-
-
-  service.get = function(callback) {
+  service.get = function(timeRange, callback) {
     var start = new Date();
-    start.setSeconds(start.getSeconds() - 60 * 20);
+    start.setSeconds(start.getSeconds() - timeRange);
     var end = new Date();
 
-    getMacs().then(function(resolvedMacs) {
-
+    Person.getByDevices().then(function(resolvedMacs) {
       Signal.queryByDateAndMacs(start, end, Object.keys(resolvedMacs), x => {
-        var macs = _.uniq(_.map(x, sig => sig.mac));
 
         var devicesByUser = {};
-        _.forEach(macs, mac => {
-          if (!devicesByUser[resolvedMacs[mac].name]) {
-            var devices = [];
-            devices.push(resolvedMacs[mac].device);
-            devicesByUser[resolvedMacs[mac].name] = devices;
-          } else {
-            devicesByUser[resolvedMacs[mac].name].push(resolvedMacs[mac].device);
-          }
-        });
+        let macs = _.chain(x)
+          .map('mac')
+          .uniq()
+          .map(m => _.get(resolvedMacs, m))
+          .map(d => _.assign(d, {
+            lastSeen: _.chain(x).filter(m => m.mac == d.mac).maxBy('timestamp').get('timestamp').value()
+          }))
+          .groupBy('name')
+          .mapValues((val, key, object) => {
+            return {
+              name: key,
+              devices: _.omit(val, 'name')
+            }
+          })
+          .values()
+          .value()
 
-        var transformed = _.map(_.keys(devicesByUser), u => {
-          var result = {
-            name: u,
-            devices: devicesByUser[u]
-          }
-          return result;
-        });
-
-        callback(transformed);
-
+        callback(macs)
 
       });
-
     });
 
   };
