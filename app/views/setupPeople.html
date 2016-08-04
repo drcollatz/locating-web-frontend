@@ -67,8 +67,10 @@
           <td class="vert-align">
             <span>{{ person.name }}<br /><small><fa name="mobile"></fa> {{ person.devices.length}} device</small></span></td>
           <td class="vert-align hidden-xs">
-            <fa name="check-circle"></fa> active</td>
-          <td class="vert-align hidden-xs">Currently online (for 37 minutes)</td>
+            <span style="color: green" ng-show="person.active"><fa name="circle"></fa> here</span>
+            <span style="color: #ccc" ng-hide="person.active"><fa name="circle"></fa> away</span>
+          </td>
+          <td class="vert-align hidden-xs">{{ person.lastSeen | WhenFilter }}</td>
           <td class="vert-align hidden-xs">
             <ul class="list-inline">
               <li ng-repeat="device in person.devices">

@@ -16,7 +16,7 @@
           </a>
         </div>
         <div class="media-body">
-          <h3 class="media-heading">{{ person.name }}<br /><small>{{ visitors.calculateMinutesSeen(person.lastSeen) | WhenFilter }} with {{ visitors.transformDevices(person.devices) }}</small></h3>
+          <h3 class="media-heading">{{ person.name }}<br /><small>{{ person.lastSeen | WhenFilter }} with {{ visitors.transformDevices(person.devices) }}</small></h3>
         </div>
       </li>
     </ul>

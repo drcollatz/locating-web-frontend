@@ -4,7 +4,15 @@ function LocatingService($http, Signal, Person) {
   var _ = require('lodash');
   const service = {};
 
-  service.get = function(timeRange, callback) {
+
+  service.get = (timeRange, callback) => {
+    service.getByName(timeRange, function(byName) {
+      callback(_.values(byName))
+    })
+
+  }
+
+  service.getByName = function(timeRange, callback) {
     var start = new Date();
     start.setSeconds(start.getSeconds() - timeRange);
     var end = new Date();
@@ -27,7 +35,6 @@ function LocatingService($http, Signal, Person) {
               devices: _.omit(val, 'name')
             }
           })
-          .values()
           .value()
 
         callback(macs)

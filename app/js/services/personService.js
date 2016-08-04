@@ -54,11 +54,11 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
     });
   };
 
-  Person.getByDevices = () => {
+  Person.getByDevices = (showAll = true) => {
     return new Promise((resolve, reject) => {
-      Person.query(result => {
-        let byDevices = _(result).chain()
-          .map(p => _.map(p.devices, d => {
+      Person.query(persons => {
+        let byDevices = _(persons).chain()
+          .flatMapDeep(p => _.map(p.devices, d => {
             return {
               name: p.name,
               device: d.name,
@@ -66,8 +66,7 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
               enabled: d.enabled
             }
           }))
-          .flattenDeep()
-          // .filter(x => x.enabled) // NOTE: Only enabled devices
+          .filter(x => showAll || x.enabled)
           .keyBy('mac')
           .value()
 
