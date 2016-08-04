@@ -206,7 +206,7 @@ function SignalsCtrl(Signal, Person) {
     })
   }
 
-  vm.hours = _.chain(_.range(6, 24)).map(x => [x + ':00', x + ':15', x + ':30', x + ':45']).flatten().value()
+  vm.hours = _.chain(_.range(0, 24)).map(x => [x + ':00', x + ':15', x + ':30', x + ':45']).flatten().value()
 
   vm.searching = false
   vm.status = null
