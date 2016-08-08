@@ -1,4 +1,4 @@
-function SignalsCtrl(Signal, Person) {
+function SignalsCtrl(Signal, Person, AppSettings) {
   'ngInject';
   // ViewModel
 
@@ -6,6 +6,32 @@ function SignalsCtrl(Signal, Person) {
 
   const vm = this;
   vm.title = 'Received signals';
+
+  vm.calendarColorFor = function(mac) {
+    let opacity = 50
+    let index = _.indexOf(vm.selected, mac)
+    let hex = AppSettings.calendarColors[index]
+    let rgb = hexToRgbColor(hex, opacity)
+    return rgb
+  }
+
+  vm.calendarBorderColorFor = function(mac) {
+    let opacity = 100
+    let index = _.indexOf(vm.selected, mac)
+    let hex = AppSettings.calendarColors[index]
+    let rgb = hexToRgbColor(hex, opacity)
+    return rgb
+  }
+
+  let hexToRgbColor = (hexVal, opacity) => {
+    let hex = hexVal.replace('#', '');
+    let r = parseInt(hex.substring(0, 2), 16);
+    let g = parseInt(hex.substring(2, 4), 16);
+    let b = parseInt(hex.substring(4, 6), 16);
+
+    let rgb = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')'
+    return rgb
+  }
 
   vm.selected = []
 
