@@ -8,19 +8,22 @@ function SignalsCtrl(Signal, Person, AppSettings) {
   vm.title = 'Received signals';
 
   vm.calendarColorFor = function(mac) {
-    let opacity = 50
-    let index = _.indexOf(vm.selected, mac)
-    let hex = AppSettings.calendarColors[index]
+    let opacity = 30
+    let hex = resolveColorForMac(mac)
     let rgb = hexToRgbColor(hex, opacity)
     return rgb
   }
 
   vm.calendarBorderColorFor = function(mac) {
-    let opacity = 100
-    let index = _.indexOf(vm.selected, mac)
-    let hex = AppSettings.calendarColors[index]
+    let opacity = 80
+    let hex = resolveColorForMac(mac)
     let rgb = hexToRgbColor(hex, opacity)
     return rgb
+  }
+
+  let resolveColorForMac = mac => {
+    let index = _.indexOf(vm.selected, mac)
+    return AppSettings.calendarColors[index]
   }
 
   let hexToRgbColor = (hexVal, opacity) => {

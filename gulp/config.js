@@ -8,6 +8,7 @@ export default {
 
   sourceDir: './app/',
   buildDir: './build/',
+  backendDir: '../locating-backend/src/main/resources/static/',
 
   styles: {
     src: 'app/styles/**/*.scss',
