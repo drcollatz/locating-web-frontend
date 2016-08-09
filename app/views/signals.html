@@ -111,7 +111,7 @@
             <tbody>
               <tr ng-repeat="hour in signalsCtrl.hours">
                 <td>{{hour | CalendarHour}}</td>
-                <td ng-repeat="day in signalsCtrl.days"><span ng-style="{'width': (100 / signalsCtrl.macsInSlot(day, hour).length) +'%' }" class="slot" ng-repeat="mac in signalsCtrl.macsInSlot(day, hour)">&nbsp;</span></td>
+                <td ng-repeat="day in signalsCtrl.days"><span ng-style="{'width': (100 / signalsCtrl.macsInSlot(day, hour).length) +'%', 'background-color': signalsCtrl.calendarColorFor(mac), 'border-left': '3px solid ' +  signalsCtrl.calendarBorderColorFor(mac) }" class="slot" ng-repeat="mac in signalsCtrl.macsInSlot(day, hour)">&nbsp;</span></td>
               </tr>
             </tbody>
           </table>

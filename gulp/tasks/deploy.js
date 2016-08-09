@@ -1,9 +1,15 @@
 'use strict';
 
 import gulp from 'gulp';
+import config from '../config';
+import del from 'del';
 
 gulp.task('deploy', ['prod'], function() {
 
-  // Any deployment logic should go here
+  // NOTE: copies the dist files to the backend!
+
+  del([config.backendDir]);
+  return gulp.src(config.buildDir + '**')
+    .pipe(gulp.dest(config.backendDir));
 
 });

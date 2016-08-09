@@ -20,11 +20,10 @@ function CurrentVisitorsCtrl(LocatingService, $interval, AppSettings) {
   }
 
   vm.calculateOpacity = (lastSeen) => {
-    let difference = vm.calculateMinutesSeen(lastSeen)
-    let opacity = 1 - difference / (timeRange / 60)
-
+    // let difference = vm.calculateMinutesSeen(lastSeen)
+    // let opacity = 1 - difference / (timeRange / 60)
     // return opacity > 0.2 ? _.ceil(opacity, 1) : 0.2
-    return difference < 10 ? 1.0 : _.ceil(opacity, 1)
+    return 1
   }
 
   vm.calculateMinutesSeen = (lastSeen) => {
