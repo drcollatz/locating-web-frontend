@@ -44,8 +44,12 @@ function SignalsCtrl(Signal, Person, AppSettings) {
   })
 
   vm.today = function() {
-    vm.end = new Date();
+    vm.end = new Date()
+    vm.end.setHours(23, 59, 59, 999)
+    vm.begin = new Date()
+    vm.begin.setHours(0, 0, 0, 0)
   };
+
   vm.today();
 
   vm.clear = function() {
@@ -254,7 +258,6 @@ function SignalsCtrl(Signal, Person, AppSettings) {
           vendor: e.vendor
         }
       }).keyBy('mac').value()
-      console.log(vendor)
 
       let macs = _.chain(macCounted)
         .keys()
