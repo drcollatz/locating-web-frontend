@@ -56,27 +56,43 @@
             <th class="hidden-xs">
               <input type="checkbox">
             </th>
-            <th>Mac</th>
-            <th>SSIDs</th>
-            <th>Times seen</th>
-            <th>Last seen</th>
-            <th>Mean RSSI</th>
-            <th>Max RSSI</th>
-            <th>Person</th>
-            <th>Device</th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-mac'; sortReverse =!sortReverse"> Mac
+              <fa ng-show="sortProperty=='-mac' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-mac' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-ssids'; sortReverse =!sortReverse"> SSIDs
+              <fa ng-show="sortProperty=='-ssids' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-ssids' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-seen'; sortReverse =!sortReverse"> Times seen
+              <fa ng-show="sortProperty=='-seen' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-seen' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-lastSeen'; sortReverse =!sortReverse"> Last seen
+              <fa ng-show="sortProperty=='-lastSeen' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-lastSeen' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-rssi'; sortReverse =!sortReverse"> Mean RSSI
+              <fa ng-show="sortProperty=='-rssi' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-rssi' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-minRssi'; sortReverse =!sortReverse"> Max RSSI
+              <fa ng-show="sortProperty=='-minRssi' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-minRssi' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-person'; sortReverse =!sortReverse"> Person
+              <fa ng-show="sortProperty=='-person' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-person' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
+            <th> <a href="#" style="color:black" ng-click="sortProperty='-device'; sortReverse =!sortReverse"> Device
+              <fa ng-show="sortProperty=='-device' && sortReverse" class="fa fa-sort-asc"></fa>
+              <fa ng-show="sortProperty=='-device' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
           </thead>
           <tbody>
-            <tr ng-repeat="signal in signalsCtrl.signalsCounted | orderBy:'-seen'">
+            <tr ng-repeat="signal in signalsCtrl.signalsCounted | orderBy:'-seen' | orderBy:sortProperty:sortReverse">
               <td class="vert-align hidden-xs">
                 <input ng-click="signalsCtrl.select(signal.mac, select)" ng-model="select" type="checkbox">
               </td>
               <td class="vert-align"><code>{{ signal.mac }}</code>
-                <br><small>{{ signal.vendor | TruncateFilter:false:20}}</small></td>
+                <br><small>{{ signal.vendor | TruncateFilter:false:30}}</small></td>
               <td class="vert-align"><span ng-repeat="ssid in signal.ssids"><span class="ssid-label label label-default">{{ ssid }}</span><br ng-if="!(($index + 1) % 4)" /></span></td>
               <td class="vert-align"><span class="badge">{{ signal.seen }}</span></td>
               <td class="vert-align">{{ signal.lastSeen | date:'short' }}</td>
-              <td class="vert-align">{{signal.rssi}}</td>
-              <td class="vert-align">{{signal.minRssi}}</td>
+              <td class="vert-align">{{ signal.rssi }}</td>
+              <td class="vert-align">{{ signal.minRssi }}</td>
               <td class="vert-align">{{ signal.person }}</td>
               <td class="vert-align">{{ signal.device }}</td>
           </tbody>
