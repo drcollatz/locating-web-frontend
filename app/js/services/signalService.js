@@ -1,4 +1,4 @@
-function SignalService($http, SpringDataRestAdapter, AppSettings) {
+function SignalService($http, SpringDataRestAdapter, Config) {
   'ngInject';
 
   var _ = require('lodash');
@@ -47,7 +47,7 @@ function SignalService($http, SpringDataRestAdapter, AppSettings) {
 
     };
 
-    var deferred = $http.get(AppSettings.apiUrl + '/signals/search/findByTimestampBetweenAndMacIn', config);
+    var deferred = $http.get(Config.get('apiUrl') + '/signals/search/findByTimestampBetweenAndMacIn', config);
     return SpringDataRestAdapter.process(deferred).then(function(data) {
       Signal.resources = data._resources('self');
       callback && callback(_.map(data._embeddedItems, function(item) {
@@ -69,7 +69,7 @@ function SignalService($http, SpringDataRestAdapter, AppSettings) {
 
     };
 
-    var deferred = $http.get(AppSettings.apiUrl + '/signals/search/findByTimestampBetween', config);
+    var deferred = $http.get(Config.get('apiUrl') + '/signals/search/findByTimestampBetween', config);
     return SpringDataRestAdapter.process(deferred).then(function(data) {
       Signal.resources = data._resources('self');
       callback && callback(_.map(data._embeddedItems, function(item) {
@@ -82,7 +82,7 @@ function SignalService($http, SpringDataRestAdapter, AppSettings) {
 
 
   Signal.query = function(callback) {
-    var deferred = $http.get(AppSettings.apiUrl + '/signals');
+    var deferred = $http.get(Config.get('apiUrl') + '/signals');
     return SpringDataRestAdapter.process(deferred).then(function(data) {
       Signal.resources = data._resources('self');
       callback && callback(_.map(data._embeddedItems, function(item) {
@@ -92,7 +92,7 @@ function SignalService($http, SpringDataRestAdapter, AppSettings) {
   };
 
   Signal.get = function(id, callback) {
-    var deferred = $http.get(AppSettings.apiUrl + '/signals/' + id);
+    var deferred = $http.get(Config.get('apiUrl') + '/signals/' + id);
     return SpringDataRestAdapter.process(deferred).then(function(data) {
       callback && callback(new Signal(data));
     });

@@ -1,4 +1,4 @@
-function PersonService($http, SpringDataRestAdapter, AppSettings) {
+function PersonService($http, SpringDataRestAdapter, Config) {
   'ngInject';
 
   var _ = require('lodash');
@@ -38,7 +38,7 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
   }
 
   Person.query = function(callback) {
-    var deferred = $http.get(AppSettings.apiUrl + '/people');
+    var deferred = $http.get(Config.get('apiUrl') + '/people');
     return SpringDataRestAdapter.process(deferred).then(function(data) {
       Person.resources = data._resources('self');
       callback && callback(_.map(data._embeddedItems, function(item) {
@@ -48,7 +48,7 @@ function PersonService($http, SpringDataRestAdapter, AppSettings) {
   };
 
   Person.get = function(id, callback) {
-    var deferred = $http.get(AppSettings.apiUrl + '/people/' + id);
+    var deferred = $http.get(Config.get('apiUrl') + '/people/' + id);
     return SpringDataRestAdapter.process(deferred).then(function(data) {
       callback && callback(new Person(data));
     });
