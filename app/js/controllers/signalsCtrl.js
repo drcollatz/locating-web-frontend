@@ -1,4 +1,4 @@
-function SignalsCtrl(Signal, Person, AppSettings) {
+function SignalsCtrl(Signal, Person, AppSettings, $uibModal, Lightbox) {
   'ngInject';
   // ViewModel
 
@@ -6,6 +6,18 @@ function SignalsCtrl(Signal, Person, AppSettings) {
 
   const vm = this;
   vm.title = 'Received signals';
+
+  vm.openImages = function(signals) {
+
+    let imgs = _.map(signals.images, x => {
+      return {
+        url: x.url,
+        caption: (signals.person ? signals.person + ' with ' + signals.device : signals.mac) + ' (' + x.timestamp + ')'
+      }
+    })
+
+    Lightbox.openModal(imgs, 0);
+  }
 
   vm.calendarColorFor = function(mac) {
     let opacity = 30
@@ -275,7 +287,8 @@ function SignalsCtrl(Signal, Person, AppSettings) {
             minRssi: _.chain(sigs).filter(y => y.mac == x).map('rssi').max().value(),
             lastSeen: _.chain(sigs).filter(y => y.mac == x).map('timestamp').max().value(),
             vendor: vendor[x] != null ? vendor[x]['vendor'] : '?',
-            ssids: _.chain(sigs).filter(y => y.mac == x).map('ssid').uniq().value()
+            ssids: _.chain(sigs).filter(y => y.mac == x).map('ssid').uniq().value(),
+            images: _.chain(sigs).filter(y => y.mac == x).map('images').flatten().uniq().value()
           }
         })
 

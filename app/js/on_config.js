@@ -1,7 +1,9 @@
-function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
+function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, LightboxProvider) {
   'ngInject';
 
   $locationProvider.html5Mode(true);
+
+  LightboxProvider.fullScreenMode = true;
 
   $stateProvider
     .state('Home', {

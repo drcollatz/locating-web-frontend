@@ -10,6 +10,8 @@ require('wu');
 require('angular-chart.js');
 require('lodash');
 
+require('angular-bootstrap-lightbox');
+
 // angular modules
 import constants from './constants';
 import onConfig  from './on_config';
@@ -37,7 +39,8 @@ const requires = [
   'ui.bootstrap',
   'picardy.fontawesome',
   'angularSpinner',
-  'chart.js'
+  'chart.js',
+  'bootstrapLightbox'
 ];
 
 // mount on window for testing
