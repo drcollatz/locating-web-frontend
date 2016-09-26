@@ -11,7 +11,7 @@ function SignalsCtrl(Signal, Person, AppSettings, $uibModal, Lightbox) {
 
     let imgs = _.map(signals.images, x => {
       return {
-        url: x.url,
+        url: x.imageUrl,
         caption: (signals.person ? signals.person + ' with ' + signals.device : signals.mac) + ' (' + x.timestamp + ')'
       }
     })
@@ -288,7 +288,7 @@ function SignalsCtrl(Signal, Person, AppSettings, $uibModal, Lightbox) {
             lastSeen: _.chain(sigs).filter(y => y.mac == x).map('timestamp').max().value(),
             vendor: vendor[x] != null ? vendor[x]['vendor'] : '?',
             ssids: _.chain(sigs).filter(y => y.mac == x).map('ssid').uniq().value(),
-            images: _.chain(sigs).filter(y => y.mac == x).map('images').flatten().uniq().value()
+            images: _.chain(sigs).filter(y => y.mac == x).map('images').flatten().uniqBy('imageUrl').orderBy(['timeStamp'],['asc']).value()
           }
         })
 

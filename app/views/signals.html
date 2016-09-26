@@ -80,7 +80,7 @@
           <th> <a href="#" style="color:black" ng-click="sortProperty='-device'; sortReverse =!sortReverse"> Device
               <fa ng-show="sortProperty=='-device' && sortReverse" class="fa fa-sort-asc"></fa>
               <fa ng-show="sortProperty=='-device' && !sortReverse" class="fa fa-sort-desc"></fa> </a> </th>
-          <th>Camera</th>
+          <th>Actions</th>
         </thead>
         <tbody>
           <tr ng-repeat="signal in signalsCtrl.signalsCounted | orderBy:'-seen' | orderBy:sortProperty:sortReverse">
@@ -99,11 +99,12 @@
             <td class="vert-align">{{ signal.minRssi }}</td>
             <td class="vert-align">{{ signal.person }}</td>
             <td class="vert-align">{{ signal.device }}</td>
-            <td>
-              <button ng-show="signal.images.length > 0" class="btn btn-sm btn-info" ng-click="signalsCtrl.openImages(signal)">
-                {{ signal.images.length }}x <fa name="camera"></fa>
+            <td class="vert-align">
+              <button ng-show="signal.images.length > 0" class="btn btn-sm btn-default" ng-click="signalsCtrl.openImages(signal)">
+                <fa fw name="camera"></fa>
               </button>
             </td>
+
         </tbody>
       </table>
     </div>

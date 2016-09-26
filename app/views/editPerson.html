@@ -13,6 +13,7 @@
           <span class="help-block">The name will be displayed if any device has been detected.</span>
         </div>
       </div>
+
       <div class="form-group form-group-md">
         <label class="control-label col-sm-2" for="deviceName">Devices</label>
         <div class="col-sm-5">
@@ -40,6 +41,17 @@
           <button class='btn btn-danger btn-block' ng-click="editPerson.deleteDevice(device)">
             <fa name="minus"></fa>
           </button>
+        </div>
+      </div>
+      <div class="form-group form-group-md">
+        <label class="control-label col-sm-2" for="imageCapturing"></label>
+        <div class="col-sm-10">
+          <div class="checkbox">
+            <label>
+              <input id="imageCapturing" type="checkbox" ng-model="editPerson.person.imageCapturing"> Image Capturing
+            </label>
+          </div>
+          <span class="help-block">If enabled the camera will capture images when person has been detected.</span>
         </div>
       </div>
   </div>

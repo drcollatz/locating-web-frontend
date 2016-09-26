@@ -34,6 +34,7 @@
         <th class="hidden-xs">Status</th>
         <th class="hidden-xs">Last seen</th>
         <th class="hidden-xs">Devices</th>
+        <th class="hidden-xs">Camera</th>
         <th></th>
       </thead>
       <tbody>
@@ -53,6 +54,10 @@
               <li ng-repeat="device in person.devices">
                 <input type="checkbox" ng-model="device.enabled" ng-click="setupPeople.updatePerson(person)"> {{ device.name }}</li>
             </ul>
+          </td>
+          <td class="vert-align">
+            <span style="color: green" ng-show="person.imageCapturing"><fa name="camera"></fa> enabled</span>
+            <span style="color: #ccc" ng-hide="person.imageCapturing"><fa name="camera"></fa> disabled</span>
           </td>
           <td class="text-right vert-align">
             <button class='btn btn-default btn-sm' ng-click="setupPeople.openDetails(person)">

@@ -1,4 +1,4 @@
-function SetupPeopleCtrl($location, Person, LocatingService, AppSettings) {
+function SetupPeopleCtrl($location, Person, LocatingService, AppSettings, $sce) {
   'ngInject';
   // ViewModel
   const vm = this;
